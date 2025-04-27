@@ -55,12 +55,31 @@
       transition: background 0.3s ease;
     }
     .btn-start { background: #4a90e2; color: white; }
-    .btn-start:hover { background: #357ABD; }
+    .btn-start:hover { background: #265788; }
     .btn-secondary { background: #1e1e1e; color: white; border: 1px solid #555; }
     .btn-secondary:hover { background: #333; }
     .btn-action { background-color: #4a90e2; color: white; }
+    .btn-action:hover { background-color: #265788; color: white; }
     .btn-edit { background-color: #f2d16d; color: #0f0f0f; }
-    .btn-exit { background-color: #f25c5c; color: white; margin-top: 20px; }
+    .btn-edit:hover { background-color: #9c8a51; color: #0f0f0f; }
+    .btn-exit { background-color: #1e1e1e; color: white; margin-top: 20px; border: 2px solid #4a90e2; }
+    .btn-exit:hover { background-color: #265788; color: white; margin-top: 20px; border: 2px solid #265788;}
+    .btn-know, .btn-dont-know {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    /* Кнопка "Не знаю" */
+    .btn-dont-know {background-color: #c98585; color: #000000;}
+    .btn-dont-know:hover {background-color: #b86c6c;}
+    /* Кнопка "Знаю" */
+    .btn-know {background-color: #b0e4a3; color: #000000;}
+    .btn-know:hover {background-color: #91ca86;}
+    
     table {
       width: 100%;
       background-color: #1e1e1e;
@@ -114,9 +133,9 @@
     }
     .counter {
       font-size: 1.4rem;
-      text-align: center;
+      text-align: right;
       margin-bottom: 10px;
-      color: #ffffff;
+      color: #7a7a7a;
     }
     #word-table-wrapper {
       width: 100%;
@@ -144,7 +163,9 @@
   <input type="number" id="card-count" placeholder="Сколько карточек?" min="1" />
   <button class="btn-start" onclick="startGame()">Старт</button>
 
-  <h2>Добавить новое слово</h2>
+  <hr style="margin-top: 50px; margin-bottom: 50px; border-color: #7f9ab9;">
+
+  <h1>Добавить новое слово</h1>
   <input type="text" id="new-word" placeholder="Новое слово" />
   <input type="text" id="new-image" placeholder="URL картинки" />
   <button class="btn-action" onclick="addNewWord()">Добавить</button>
@@ -164,8 +185,8 @@
     <div class="card-word" id="card-word">Word</div>
   </div>
   <div class="card-buttons">
-    <button style="background-color: #c76d6d; color: #0f0f0f;" onclick="swipeLeft()">Не знаю</button>
-    <button style="background-color: #a5ed93; color: #0f0f0f;" onclick="swipeRight()">Знаю</button>
+    <button class="btn-dont-know" onclick="swipeLeft()">Не знаю</button>
+    <button class="btn-know" onclick="swipeRight()">Знаю</button>
   </div>
   <button class="btn-exit" onclick="exitGame()">Выход в меню</button>
 </div>
