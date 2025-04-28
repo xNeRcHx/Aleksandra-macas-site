@@ -125,7 +125,7 @@
     .card-buttons {
       display: flex;
       gap: 10px;
-      margin-top: 152px;
+      margin-top: 70px;
     }
     .card-buttons button {
       flex: 1;
@@ -157,17 +157,17 @@
 
 <!-- Стартовое меню -->
 <div id="start-menu" class="container">
-  <h1>Начать обучение</h1>
+  <h1>Start learning</h1>
   <select id="category"></select>
-  <input type="number" id="card-count" placeholder="Сколько карточек?" min="1" />
-  <button class="btn-start" onclick="startGame()">Старт</button>
+  <input type="number" id="card-count" placeholder="How many cards?" min="1" />
+  <button class="btn-start" onclick="startGame()">Start</button>
 
   <hr style="margin-top: 50px; margin-bottom: 50px; border-color: #7f9ab9;">
 
-  <h1>Добавить новое слово</h1>
-  <input type="text" id="new-word" placeholder="Новое слово" />
-  <input type="text" id="new-image" placeholder="URL картинки" />
-  <button class="btn-action" onclick="addNewWord()">Добавить</button>
+  <h1>Add a new word</h1>
+  <input type="text" id="new-word" placeholder="New word" />
+  <input type="text" id="new-image" placeholder="URL image" />
+  <button class="btn-action" onclick="addNewWord()">Add</button>
 
   <button class="btn-secondary" id="toggle-table-btn" onclick="toggleTable()">Показать таблицу</button>
 
@@ -184,10 +184,10 @@
     <div class="card-word" id="card-word">Word</div>
   </div>
   <div class="card-buttons">
-    <button class="btn-dont-know" onclick="swipeLeft()">Не знаю</button>
-    <button class="btn-know" onclick="swipeRight()">Знаю</button>
+    <button class="btn-dont-know" onclick="swipeLeft()">I don't know</button>
+    <button class="btn-know" onclick="swipeRight()">I know</button>
   </div>
-  <button class="btn-exit" onclick="exitGame()">Выход в меню</button>
+  <button class="btn-exit" onclick="exitGame()">Exit to menu</button>
 </div>
 
 <script>
@@ -216,19 +216,19 @@ function toggleTable() {
 }
 
 function refreshTable() {
-  document.getElementById('toggle-table-btn').innerText = `Показать таблицу (${allWords.length} слов)`;
+  document.getElementById('toggle-table-btn').innerText = `Word table (${allWords.length} word)`;
   updateCategoryDropdown();
 
-  let tableHtml = `<table><tr><th>Слово</th><th>Изображение</th><th>Статус</th><th>Переключить статус</th><th>Удалить</th></tr>`;
+  let tableHtml = `<table><tr><th>Word</th><th>Image</th><th>Status</th><th>Toggle status</th><th>Delete</th></tr>`;
   allWords.forEach((item, index) => {
     const statusClass = item.status ? 'status-learned' : 'status-not-learned';
-    const statusText = item.status ? 'Выучено' : 'Не выучено';
+    const statusText = item.status ? 'Learned' : 'Not learned';
     tableHtml += `<tr>
       <td><input type='text' value='${item.word}' class='edit-input' onchange='editWord(${index}, this.value, "word")'></td>
       <td><input type='text' value='${item.image}' class='edit-input' onchange='editWord(${index}, this.value, "image")'></td>
       <td class='${statusClass}'>${statusText}</td>
-      <td><button class='btn-edit' onclick='toggleStatus(${index})'>Переключить</button></td>
-      <td><button class='btn-action' onclick='deleteWord(${index})'>Удалить</button></td>
+      <td><button class='btn-edit' onclick='toggleStatus(${index})'>Toggle</button></td>
+      <td><button class='btn-action' onclick='deleteWord(${index})'>Delete</button></td>
     </tr>`;
   });
   tableHtml += `</table>`;
@@ -241,9 +241,9 @@ function updateCategoryDropdown() {
   const total = allWords.length;
   const category = document.getElementById('category');
   category.innerHTML = `
-    <option value="all">Микс (${total})</option>
-    <option value="learned">Выученные (${learned})</option>
-    <option value="notlearned">Невыученные (${notlearned})</option>
+    <option value="all">Mix of words (${total})</option>
+    <option value="learned">Learned words (${learned})</option>
+    <option value="notlearned">Unlearned words (${notlearned})</option>
   `;
 }
 
